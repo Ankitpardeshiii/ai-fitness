@@ -19,9 +19,43 @@ An intelligent fitness trainer that uses AI and computer vision to provide real-
 
 ### Installation
 ## 🌐 Web Interfaces
-
 ### Professional Website
 ```bash
+ai-fitness-trainer/
+│
+├── core/                      # Core AI & fitness logic
+│   ├── enhanced_trainer.py
+│   ├── fixed_main.py
+│   └── run_fitness_trainer.py
+│
+├── web/                       # Web interfaces & dashboards
+│   ├── web_interface.py
+│   ├── simple_web.py
+│   ├── launch_web.py
+│   └── progress_dashboard.py
+│
+├── scripts/                   # Setup & automation scripts
+│   ├── clean_setup.py
+│   ├── create_structure.py
+│   ├── create_web_files.py
+│   ├── install_dependencies.py
+│   ├── install_web_dependencies.py
+│   ├── fix_installation.ps1
+│   └── install_and_run.bat
+│
+├── tests/                     # Test and validation files
+│   ├── simple_test.py
+│   └── test_setup.py
+│
+├── requirements/              # Dependency files
+│   ├── requirements.txt
+│   └── requirements-simple.txt
+│
+├── run.py                     # Main entry point
+├── setup.py                   # Project setup & packaging
+├── README.md
+├── CODE_OF_CONDUCT.md
+
 # Launch HTML website
 python web/run_website.py
 
@@ -31,4 +65,5 @@ python web/web_server.py
 1. Clone the repository:
 ```bash
 git clone https://github.com/PathakAman66/ai-fitness-trainer.git
+
 cd ai-fitness-trainer
