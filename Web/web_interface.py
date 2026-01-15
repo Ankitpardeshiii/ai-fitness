@@ -15,36 +15,39 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Enhanced Custom CSS
+# Enhanced Responsive CSS
 st.markdown("""
 <style>
     /* Global Styles */
+    * { box-sizing: border-box; }
     .main { padding: 2rem 1rem; }
-    .block-container { padding-top: 2rem; max-width: 1400px; }
+    .block-container { padding-top: 2rem; max-width: 1400px; margin: 0 auto; }
     
     /* Typography */
     .main-header {
-        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-size: clamp(1.5rem, 4vw, 3.5rem);
         font-weight: 700;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-align: center;
-        margin: 0 0 1.5rem 0;
-        padding: 1rem 0;
+        margin: 0 0 1rem 0;
+        padding: 0.5rem 0;
+        line-height: 1.2;
     }
     
     .subtitle {
         text-align: center;
         color: #666;
-        font-size: 1.1rem;
-        margin-bottom: 2.5rem;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        margin-bottom: 1.5rem;
+        padding: 0 1rem;
     }
     
     /* Cards & Containers */
     .metric-card {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 1.5rem;
+        padding: 1rem;
         border-radius: 12px;
         color: white;
         text-align: center;
@@ -54,7 +57,7 @@ st.markdown("""
     
     .info-card {
         background: #f8f9fa;
-        padding: 1.5rem;
+        padding: 1rem;
         border-radius: 12px;
         border-left: 4px solid #667eea;
         margin: 1rem 0;
@@ -66,7 +69,7 @@ st.markdown("""
     .feedback-error { color: #FF4B4B; font-weight: 600; }
     
     /* Sidebar */
-    .css-1d391kg { padding: 2rem 1rem; }
+    .css-1d391kg { padding: 1.5rem 1rem; }
     section[data-testid="stSidebar"] { background-color: #f8f9fa; }
     
     /* Buttons */
@@ -76,12 +79,46 @@ st.markdown("""
         padding: 0.6rem 1rem;
         font-weight: 600;
         transition: all 0.3s ease;
+        font-size: clamp(0.85rem, 2vw, 1rem);
     }
     
-    /* Responsive */
+    /* Video Container */
+    .stImage { border-radius: 12px; overflow: hidden; }
+    
+    /* Metrics */
+    [data-testid="stMetricValue"] { font-size: clamp(1.2rem, 3vw, 1.8rem) !important; }
+    [data-testid="stMetricLabel"] { font-size: clamp(0.8rem, 2vw, 1rem) !important; }
+    
+    /* Mobile Responsive (< 768px) */
     @media (max-width: 768px) {
-        .main-header { font-size: 2rem; }
-        .block-container { padding: 1rem; }
+        .main { padding: 1rem 0.5rem; }
+        .block-container { padding: 1rem 0.5rem; max-width: 100%; }
+        .main-header { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .subtitle { font-size: 0.9rem; margin-bottom: 1rem; }
+        .metric-card, .info-card { padding: 0.8rem; margin: 0.5rem 0; }
+        section[data-testid="stSidebar"] { padding: 1rem 0.5rem; }
+        .stButton>button { padding: 0.5rem 0.8rem; font-size: 0.9rem; }
+        h3 { font-size: 1.2rem !important; }
+    }
+    
+    /* Tablet Responsive (768px - 1024px) */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .main { padding: 1.5rem 1rem; }
+        .block-container { padding: 1.5rem 1rem; max-width: 100%; }
+        .main-header { font-size: 2.5rem; }
+        .subtitle { font-size: 1rem; }
+        .metric-card, .info-card { padding: 1.2rem; }
+    }
+    
+    /* Desktop Responsive (> 1024px) */
+    @media (min-width: 1024px) {
+        .block-container { max-width: 1400px; }
+    }
+    
+    /* Touch-friendly spacing */
+    @media (hover: none) and (pointer: coarse) {
+        .stButton>button { padding: 0.8rem 1rem; min-height: 44px; }
+        .stSelectbox, .stSlider { margin: 1rem 0; }
     }
 </style>
 """, unsafe_allow_html=True)
@@ -174,8 +211,9 @@ def main():
         with col2:
             st.metric("Target", target_reps, delta=None)
         
-    # Main area with better spacing
-    col1, col2 = st.columns([2.5, 1.5], gap="large")
+    # Main area with responsive layout
+    # Streamlit automatically handles column stacking on mobile
+    col1, col2 = st.columns([2.5, 1.5], gap="medium")
     
     with col1:
         st.markdown("### 📹 Live Camera Feed")
