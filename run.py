@@ -39,7 +39,17 @@ def run_enhanced_desktop():
 def run_web_mode():
     """Run web interface launcher"""
     print("🌐 Starting AI Fitness Trainer Web Interface...")
-    run_script(os.path.join("web", "run_website.py"))
+
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    web_launcher = os.path.join(base_dir, "launch_web.py")
+
+    if not os.path.exists(web_launcher):
+        print(f"❌ Error: '{web_launcher}' not found.")
+        print("💡 Expected web entry file: launch_web.py at project root")
+        sys.exit(1)
+
+    subprocess.run([sys.executable, web_launcher], check=True)
+
 
 
 def run_dashboard():
