@@ -13,7 +13,7 @@ import sys
 # Add frontend to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'frontend'))
 
-from workout_history import (
+from streamlit_interface.services import (
     WorkoutHistoryLoader,
     WorkoutHistoryFilter,
     WorkoutHistoryAggregator,
